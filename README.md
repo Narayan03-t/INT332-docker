@@ -1,15 +1,39 @@
-# 🐳 Dockerized MySQL Setup
+# 🐳 INT332 Docker Practicals
+
+This repository contains Docker-based practicals covering containerization, database setup, and multi-container applications using Docker Compose.
+
+---
+
+## 📁 Practicals Included
+
+### 1️⃣ Dockerized MySQL Setup
+
+Demonstrates how to run and manage a MySQL database using Docker.
+
+📂 Location: `mysql-docker/` *(or root if kept there)*
+
+---
+
+### 2️⃣ WordPress + MySQL (Docker Compose)
+
+Demonstrates a real-world multi-container application using WordPress and MySQL.
+
+📂 Location: `wordpress-mysql-docker/`
+
+---
+
+# 🧩 Practical 1: Dockerized MySQL Setup
 
 ## 📌 Overview
 
-This repository demonstrates how to provision and run a MySQL database using Docker, and interact with it via the MySQL command-line client. It covers container creation, database initialization, and basic SQL operations.
+This practical demonstrates how to provision and run a MySQL database using Docker and interact with it via the MySQL command-line client.
 
 ---
 
 ## ⚙️ Prerequisites
 
 * Docker installed and running
-* Basic understanding of command-line interface
+* Basic knowledge of command line
 
 ---
 
@@ -17,13 +41,13 @@ This repository demonstrates how to provision and run a MySQL database using Doc
 
 ### 1. Pull MySQL Image
 
-```bash
+```
 docker pull mysql:latest
 ```
 
 ### 2. Run MySQL Container
 
-```bash
+```
 docker run -it \
   --name my-db \
   -e MYSQL_ROOT_PASSWORD=<your_password> \
@@ -32,13 +56,13 @@ docker run -it \
 
 ### 3. Access Running Container
 
-```bash
+```
 docker exec -it my-db bash
 ```
 
 ### 4. Connect to MySQL Server
 
-```bash
+```
 mysql -u root -p
 ```
 
@@ -46,59 +70,35 @@ mysql -u root -p
 
 ## 🗄️ Database Operations
 
-The following operations were performed inside the MySQL shell:
-
-* Created a new database
-* Switched to the database
-* Created a table
+* Created database
+* Created table
 * Inserted records
 * Queried data
 
 ---
 
-## ⚠️ Common Issues & Resolutions
+## ⚠️ Common Issues & Fixes
 
-### 1. Invalid Flag Usage
+### ❌ Invalid Flag
 
-**Issue:**
+* Error: `unknown flag: --it`
+* Fix: Use `-it`
 
-```
-unknown flag: --it
-```
+### ❌ Wrong Image Name
 
-**Resolution:**
-Use `-it` instead of `--it`.
+* Error: `pull access denied for myaql`
+* Fix: Use `mysql`
 
----
+### ❌ SQL Errors
 
-### 2. Incorrect Image Name
-
-**Issue:**
-
-```
-pull access denied for myaql
-```
-
-**Resolution:**
-Ensure the correct image name is used: `mysql`.
+* Always terminate queries with `;`
+* Execute queries one by one
 
 ---
 
-### 3. SQL Syntax Errors
+## 📊 Sample Output
 
-**Issue:** Multiple SQL statements executed without proper termination.
-
-**Resolution:**
-
-* Terminate each SQL statement with `;`
-* Execute statements individually
-* Ensure proper syntax for INSERT and CREATE queries
-
----
-
-## 📊 Sample Query Output
-
-```sql
+```
 SELECT * FROM lect_1;
 
 +------+
@@ -112,22 +112,82 @@ SELECT * FROM lect_1;
 
 ## 📚 Key Learnings
 
-* Container lifecycle management using Docker
-* Difference between `docker run` and `docker exec`
-* Running database services inside containers
-* Importance of SQL syntax and execution order
+* Docker container lifecycle
+* `docker run` vs `docker exec`
+* Running databases in containers
+* SQL basics
 
 ---
 
-## 🔮 Future Enhancements
 
-* Configure Docker volumes for persistent storage
-* Expose MySQL port for external connections
-* Integrate with backend applications (Node.js / MERN)
-* Use Docker Compose for multi-container orchestration
+
+
+# 🧩 Practical 2: WordPress + MySQL (Docker Compose)
+
+<img width="1919" height="995" alt="image" src="https://github.com/user-attachments/assets/ea3a82f0-47a0-4c9c-a318-cfab2577701e" />
+
+<img width="1919" height="978" alt="image" src="https://github.com/user-attachments/assets/eb6c6684-0e7c-44a4-b4af-421a184ba1c6" />
+
+<img width="1919" height="986" alt="image" src="https://github.com/user-attachments/assets/58efe91f-df7b-4cea-a2fa-d7261eaa98ae" />
+
+
+
+
+## 📌 Overview
+
+This practical demonstrates a multi-container application using Docker Compose with WordPress and MySQL.
 
 ---
 
-## 👨‍💻 Author
+## 🏗️ Architecture
 
-Tek Narayan
+* WordPress (Frontend + PHP + Apache)
+* MySQL (Database)
+* Docker Bridge Network
+* Named Volumes for persistence
+
+---
+
+## 🚀 Run Project
+
+```
+docker compose up -d
+```
+
+---
+
+## 🌐 Access
+
+```
+http://localhost:8080
+```
+
+---
+
+## 🔑 Key Concepts
+
+* Multi-container deployment
+* Service-to-service communication
+* Docker networking
+* Volume-based persistence
+* Health checks
+
+---
+
+## 🧠 Summary
+
+WordPress runs in one container and connects to MySQL in another using Docker's internal network. Data is persisted using volumes.
+
+---
+
+# 🔮 Future Enhancements
+
+* Add more Docker-based practicals
+* Integrate with MERN stack
+* Deploy using Docker Swarm / Kubernetes
+
+---
+
+# 👨‍💻 Author
+
+**Narayan (LPU CSE)**
