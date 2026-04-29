@@ -189,5 +189,10 @@ WordPress runs in one container and connects to MySQL in another using Docker's 
 ---
 
 # 👨‍💻 Author
+**Tek Narayan**
 
-**Narayan (LPU CSE)**
+
+
+
+
+
